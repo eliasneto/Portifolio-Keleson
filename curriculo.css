@@ -1,0 +1,95 @@
+/* Página do currículo (usa os tokens de styles.css) */
+.nav a[aria-current="page"] { color: var(--text); }
+
+.cv { padding-top: 32px; padding-bottom: 48px; }
+.cv-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; }
+
+.cv-sheet {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+  box-shadow: var(--shadow); padding: 40px 44px;
+}
+
+.cv-header {
+  display: flex; justify-content: space-between; align-items: flex-end; gap: 24px;
+  padding-bottom: 18px; border-bottom: 3px solid var(--accent);
+}
+.cv-header h1 { font-size: clamp(24px, 4vw, 32px); letter-spacing: -.5px; line-height: 1.15; }
+.cv-role { color: var(--accent); font-weight: 600; margin-top: 6px; }
+.cv-contact { list-style: none; text-align: right; font-size: 14px; color: var(--muted); }
+.cv-contact a { color: var(--text); }
+
+.cv-sheet section { margin-top: 26px; }
+.cv-sheet h2 {
+  font-size: 13px; text-transform: uppercase; letter-spacing: 1.2px; color: var(--accent);
+  padding-bottom: 6px; margin-bottom: 12px; border-bottom: 1px solid var(--line);
+}
+.cv-sheet p { font-size: 15px; }
+.cv-sheet p + p { margin-top: 8px; }
+
+.cv-list { padding-left: 18px; display: grid; gap: 5px; font-size: 15px; }
+
+.cv-results { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.cv-results li { border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+.cv-results strong { display: block; font-size: 22px; font-weight: 800; color: var(--accent); }
+.cv-results span { font-size: 13px; color: var(--muted); line-height: 1.4; display: block; }
+
+.cv-job + .cv-job { margin-top: 18px; }
+.cv-job-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+.cv-job h3 { font-size: 16px; }
+.cv-job .when { white-space: nowrap; }
+.cv-job .where { color: var(--muted); font-weight: 500; margin-bottom: 6px; }
+
+.cv-two { display: grid; grid-template-columns: 1fr 1.6fr; gap: 28px; }
+
+@media (max-width: 760px) {
+  .cv-sheet { padding: 24px 18px; }
+  .cv-header { flex-direction: column; align-items: flex-start; }
+  .cv-contact { text-align: left; }
+  .cv-results { grid-template-columns: repeat(2, 1fr); }
+  .cv-job-head { flex-direction: column; gap: 0; }
+  .cv-two { grid-template-columns: 1fr; gap: 0; }
+}
+
+/* Impressão / PDF: só a folha, em A4, sempre no tema claro */
+@media print {
+  @page { size: A4; margin: 12mm 13mm; }
+  :root, :root[data-theme="dark"] {
+    --bg: #fff; --surface: #fff; --text: #16202c; --muted: #4d5966;
+    --line: #d9dee5; --accent: #1f5fc4; --shadow: none;
+  }
+  body { background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .topbar, .cv-actions, .footer { display: none; }
+  .cv { padding: 0; max-width: none; }
+  .cv-sheet { border: 0; border-radius: 0; padding: 0; }
+  .cv-sheet section { margin-top: 14px; }
+  .cv-sheet h2 { font-size: 10.5px; margin-bottom: 7px; padding-bottom: 3px; }
+  .cv-header { flex-direction: row; align-items: flex-end; padding-bottom: 10px; }
+  .cv-header h1 { font-size: 22px; }
+  .cv-role { font-size: 11.5px; }
+  .cv-contact { text-align: right; font-size: 10px; }
+  .cv-sheet p, .cv-list { font-size: 10.5px; line-height: 1.5; }
+  .cv-list { gap: 2px; }
+  .cv-results { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .cv-results li { padding: 7px 9px; }
+  .cv-results strong { font-size: 16px; }
+  .cv-results span { font-size: 9.5px; }
+  .cv-job + .cv-job { margin-top: 10px; }
+  .cv-job-head { flex-direction: row; }
+  .cv-job h3 { font-size: 11.5px; }
+  .cv-job .when { font-size: 10px; }
+  .cv-job .where { font-size: 10.5px; margin-bottom: 3px; }
+  .cv-two { grid-template-columns: 1fr 1.6fr; gap: 20px; }
+  .cv-job, .cv-results li, .cv-two > div { break-inside: avoid; }
+  .cv-sheet h2 { break-after: avoid; }
+  a { color: inherit; }
+}
+
+/* Detalhes em dourado no currículo */
+.cv-header { border-bottom-color: var(--gold-line); }
+.cv-sheet h2 { color: var(--gold); border-bottom-color: var(--gold-line); }
+.cv-photo { width: 92px; height: 102px; object-fit: cover; border-radius: 10px; border: 2px solid var(--gold-line); }
+.cv-header-left { display: flex; gap: 18px; align-items: center; }
+@media print {
+  :root, :root[data-theme="dark"] { --gold: #9c7a12; --gold-line: #c9a227; --gold-soft: #f8efd4; }
+  .cv-photo { width: 70px; height: 78px; }
+}
