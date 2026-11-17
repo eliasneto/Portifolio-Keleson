@@ -93,3 +93,5 @@
   :root, :root[data-theme="dark"] { --gold: #9c7a12; --gold-line: #c9a227; --gold-soft: #f8efd4; }
   .cv-photo { width: 70px; height: 78px; }
 }
+.cv-intro { font-size: 15px; margin-bottom: 6px; }
+@media print { .cv-intro { font-size: 10.5px; margin-bottom: 3px; } }
