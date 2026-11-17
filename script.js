@@ -22,4 +22,5 @@ document.getElementById("themeToggle").addEventListener("click", () => {
   try { localStorage.setItem("tema", novo); } catch (e) {}
 });
 
-document.getElementById("ano").textContent = new Date().getFullYear();
+const ano = document.getElementById("ano");
+if (ano) ano.textContent = new Date().getFullYear();
